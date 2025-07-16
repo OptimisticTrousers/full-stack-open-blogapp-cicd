@@ -21,12 +21,17 @@ jobs:
       - name: Check style
         working-directory: "bloglist-backend"
         run: npm run lint
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.7.0
+        with:
+          mongodb-username: username
+          mongodb-password: password
+          mongodb-db: test-fullstackopen-blog
       - name: Create env file
         working-directory: "bloglist-backend"
         run: |
           touch .env
-          echo MONGODB_URI=${{ secrets.MONGODB_URI }} >> .env
-          echo TEST_MONGODB_URI=${{ secrets.TEST_MONGODB_URI }} >> .env
+          echo TEST_MONGODB_URI=mongodb://username:password@localhost:27017/test-fullstackopen-blog >> .env
           echo PORT=${{ secrets.PORT }} >> .env
           echo SECRET=${{ secrets.SECRET }} >> .env
       - name: Tests
