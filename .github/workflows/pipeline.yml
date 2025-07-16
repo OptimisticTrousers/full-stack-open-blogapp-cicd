@@ -50,11 +50,11 @@ jobs:
       - name: Tests
         working-directory: "bloglist-frontend"
         run: npm test
-      - name: Install Playwright Browsers
 
       - name: Install dependencies
         working-directory: "bloglist-e2e"
         run: npm install
+      - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         working-directory: "bloglist-e2e"
