@@ -10,6 +10,9 @@ on:
 jobs:
   deployment_pipeline:
     runs-on: ubuntu-22.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.53.0-noble
+      options: --user 1001
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -52,13 +55,13 @@ jobs:
         run: npm test
 
       - name: Install dependencies
-        working-directory: "bloglist-e2e"
+        working-directory: ./bloglist-e2e
         run: npm install
       - name: Install Playwright Browsers
-        working-directory: "bloglist-e2e"
+        working-directory: ./bloglist-e2e
         run: npx playwright install --with-deps
       - name: Run Playwright tests
-        working-directory: "bloglist-e2e"
+        working-directory: ./bloglist-e2e
         run: npm test
       - uses: actions/upload-artifact@v4
         if: ${{ ! cancelled() }}
