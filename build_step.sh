@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /bloglist-frontend
+cd bloglist-frontend
 npm install
 cd ../bloglist-backend
 npm install
