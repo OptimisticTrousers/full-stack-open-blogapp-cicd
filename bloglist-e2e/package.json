@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "playwright test",
-    "test:report": "playwright show-report"
+    "test:report": "playwright show-report",
+    "start:test": "cd ../bloglist-backend && npm run start:test"
   },
   "keywords": [],
   "author": "",
