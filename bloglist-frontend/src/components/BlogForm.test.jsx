@@ -3,12 +3,17 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import BlogForm from "./BlogForm";
+import { BrowserRouter } from "react-router-dom";
 
 test("<BlogForm /> updates parent state and calls onSubmit", async () => {
   const user = userEvent.setup();
   const createBlog = vi.fn();
 
-  render(<BlogForm createBlog={createBlog} />);
+  render(
+    <BrowserRouter>
+      <BlogForm createBlog={createBlog} />
+    </BrowserRouter>,
+  );
 
   const blogTitle = screen.getByPlaceholderText("write blog title here");
   const blogAuthor = screen.getByPlaceholderText("write blog author here");
