@@ -58,7 +58,7 @@ jobs:
         uses: BerniWittmann/background-server-action@v1
         with:
             command: cd ./bloglist-e2e && npm ci && npx playwright install --with-deps && npx playwright test
-            start: cd ./bloglist-backend && npm run start:test
+            start: cd ./bloglist-backend && npm run build:ui && npm run start:test
       - uses: actions/upload-artifact@v4
         if: ${{ ! cancelled() }}
         with:
