@@ -46,11 +46,11 @@ jobs:
         working-directory: "bloglist-frontend"
         run: npm test
       - name: Install Playwright Browsers
-        working-directory: "bloglist-frontend"
+        working-directory: "bloglist-e2e"
         run: npx playwright install --with-deps
       - name: Run Playwright tests
-        working-directory: "bloglist-frontend"
-        run: npm run e2e
+        working-directory: "bloglist-e2e"
+        run: npm test
       - uses: actions/upload-artifact@v4
         if: ${{ ! cancelled() }}
         with:
