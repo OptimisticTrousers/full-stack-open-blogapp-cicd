@@ -9,6 +9,8 @@ const loginRouter = require("./controllers/login");
 
 const app = express();
 
+app.use(express.static("dist"));
+
 const mongoUrl = config.MONGODB_URI;
 mongoose.set("strictQuery", false);
 mongoose.connect(mongoUrl);
