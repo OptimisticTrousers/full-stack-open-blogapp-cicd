@@ -15,10 +15,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Install dependencies
+      - name: Install backend dependencies
         working-directory: "bloglist-backend"
         run: npm install
-      - name: Check style
+      - name: Check backend style
         working-directory: "bloglist-backend"
         run: npm run lint
       - name: Create env file
@@ -34,20 +34,20 @@ jobs:
           mongodb-username: username
           mongodb-password: password
           mongodb-db: test-fullstackopen-blog
-      - name: Tests
+      - name: Backend Tests
         working-directory: "bloglist-backend"
         run: npm test
       
-      - name: Install dependencies
+      - name: Install frontend dependencies
         working-directory: "bloglist-frontend"
         run: npm install
-      - name: Check style
+      - name: Check frontend style
         working-directory: "bloglist-frontend"
         run: npm run lint
       - name: Build
         working-directory: "bloglist-frontend"
         run: npm run build
-      - name: Tests
+      - name: Frontend Tests
         working-directory: "bloglist-frontend"
         run: npm test
 
@@ -55,6 +55,7 @@ jobs:
         working-directory: "bloglist-e2e"
         run: npm install
       - name: Install Playwright Browsers
+        working-directory: "bloglist-e2e"
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         working-directory: "bloglist-e2e"
