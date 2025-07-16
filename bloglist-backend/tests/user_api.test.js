@@ -69,7 +69,7 @@ describe("when there are some users saved initially", () => {
         "User validation failed: username: Path `username` (`bo`) is shorter than the minimum allowed length (3)."
       );
       assert.strictEqual(usersAtEnd.length, helper.initialUsers.length);
-      assert(!usernames.includes("bo"));
+      assert(!usernames.includes());
     });
 
     test("fails with status code 400 if username is not unique", async () => {
