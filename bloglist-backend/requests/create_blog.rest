@@ -1,0 +1,9 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title": "How to Make a Cake: Part 2",
+    "author": "Tony Isern",
+    "url": "http://cake.com/how2",
+    "likes": 2
+}
