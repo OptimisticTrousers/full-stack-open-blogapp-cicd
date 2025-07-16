@@ -25,7 +25,7 @@ jobs:
         working-directory: "bloglist-backend"
         run: |
           touch .env
-          echo TEST_MONGODB_URI=mongodb://username:password@localhost:27017/test-fullstackopen-blog >> .env
+          echo TEST_MONGODB_URI=mongodb://username:password@localhost:27017/test-fullstackopen-blog?authSource=admin >> .env
           echo PORT=${{ secrets.PORT }} >> .env
           echo SECRET=${{ secrets.SECRET }} >> .env
       - name: Start MongoDB
