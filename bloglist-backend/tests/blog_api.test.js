@@ -237,7 +237,7 @@ test("a blog cannot be deleted if a token is not provided", async () => {
 //   assert.strictEqual(blogsAtEnd.length, helper.initialBlogs.length - 1);
 // });
 
-// test("a blog cannot be deleted if the user did created it", async () => {
+// test("a blog cannot be deleted if the user did not create it", async () => {
 //   const blogsAtStart = await helper.blogsInDb();
 //   const blogToDelete = blogsAtStart[0];
 //   const newUser = {
@@ -272,50 +272,50 @@ test("a blog cannot be deleted if a token is not provided", async () => {
 //   assert.strictEqual(blogsAtEnd.length, helper.initialBlogs.length - 1);
 // });
 
-// test("a blog can be updated", async () => {
-//   const blogsAtStart = await helper.blogsInDb();
-//   const blogToUpdate = blogsAtStart[0];
-//   const newBlog = {
-//     title: "Updated title",
-//     likes: 3,
-//     url: "http://update.com",
-//     author: "Bob Jones",
-//   };
+test("a blog can be updated", async () => {
+  const blogsAtStart = await helper.blogsInDb();
+  const blogToUpdate = blogsAtStart[0];
+  const newBlog = {
+    title: "Updated title",
+    likes: 3,
+    url: "http://update.com",
+    author: "Bob Jones",
+  };
 
-//   await api.put(`/api/blogs/${blogToUpdate.id}`).send(newBlog).expect(200);
+  await api.put(`/api/blogs/${blogToUpdate.id}`).send(newBlog).expect(200);
 
-//   const blogsAtEnd = await helper.blogsInDb();
+  const blogsAtEnd = await helper.blogsInDb();
 
-//   const titles = blogsAtEnd.map((b) => b.title);
-//   assert(titles.includes("Updated title"));
-//   assert(!titles.includes(blogToUpdate.id));
+  const titles = blogsAtEnd.map((b) => b.title);
+  assert(titles.includes("Updated title"));
+  assert(!titles.includes(blogToUpdate.id));
 
-//   assert.strictEqual(blogsAtEnd.length, helper.initialBlogs.length);
-// });
+  assert.strictEqual(blogsAtEnd.length, helper.initialBlogs.length);
+});
 
-// test("when updating, it fails with status code 404 if blog does not exist", async () => {
-//   const validNonexistingId = await helper.nonExistingId();
-//   const newBlog = {
-//     title: "Updated title",
-//     likes: 3,
-//     url: "http://update.com",
-//     author: "Bob Jones",
-//   };
+test("when updating, it fails with status code 404 if blog does not exist", async () => {
+  const validNonexistingId = await helper.nonExistingId();
+  const newBlog = {
+    title: "Updated title",
+    likes: 3,
+    url: "http://update.com",
+    author: "Bob Jones",
+  };
 
-//   await api.put(`/api/blogs/${validNonexistingId}`).send(newBlog).expect(404);
-// });
+  await api.put(`/api/blogs/${validNonexistingId}`).send(newBlog).expect(404);
+});
 
-// test("when updating, it fails with statuscode 400 id is invalid", async () => {
-//   const invalidId = "5a3d5da59070081a82a3445";
-//   const newBlog = {
-//     title: "Updated title",
-//     likes: 3,
-//     url: "http://update.com",
-//     author: "Bob Jones",
-//   };
+test("when updating, it fails with statuscode 400 id is invalid", async () => {
+  const invalidId = "5a3d5da59070081a82a3445";
+  const newBlog = {
+    title: "Updated title",
+    likes: 3,
+    url: "http://update.com",
+    author: "Bob Jones",
+  };
 
-//   await api.put(`/api/blogs/${invalidId}`).send(newBlog).expect(400);
-// });
+  await api.put(`/api/blogs/${invalidId}`).send(newBlog).expect(400);
+});
 
 after(async () => {
   await mongoose.connection.close();
