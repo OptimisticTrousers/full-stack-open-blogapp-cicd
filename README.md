@@ -7,3 +7,5 @@ It includes:
 - tests for backend
 - end to end tests
 - automatic semantic versioning tagging
+
+NOTE: This change was made by a test pull request for exercise 11.21.
